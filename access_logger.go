@@ -7,7 +7,7 @@ import (
 )
 
 func NewAccessLog(handler http.Handler) http.Handler {
-	combinedLog, _ := apachelog.New(`%h %l %{X-Client-Application-Id}o %t "%r" %>s %b "%{Referer}i" "%{User-agent}i"`)
+	combinedLog, _ := apachelog.New(`%h %l %{X-Correlation-Id}o %t "%r" %>s %b "%{Referer}i" "%{User-agent}i"`)
 	return combinedLog.Wrap(handler, os.Stderr)
 }
 
